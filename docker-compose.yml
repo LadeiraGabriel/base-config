@@ -1,0 +1,26 @@
+version: "3"
+
+
+services:
+  web:
+    build: .
+    command: npm run start-dev
+    ports: 
+      - "3000:3000"
+    volumes:
+      - .:/NodePostgresJest 
+
+
+  db:
+    container_name: db_postgress
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"  
+    volumes:
+      - postgres:/var/lib/postgres  
+    environment:
+      POSTGRES_PASSWORD: 123456  
+
+volumes:
+  postgres:   
